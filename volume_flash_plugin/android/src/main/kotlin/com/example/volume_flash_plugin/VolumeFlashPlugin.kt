@@ -12,8 +12,6 @@ import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.plugin.common.MethodCall
-import io.flutter.plugin.common.MethodChannel
 
 /** VolumeFlashPlugin */
 class VolumeFlashPlugin: FlutterPlugin, MethodCallHandler {
