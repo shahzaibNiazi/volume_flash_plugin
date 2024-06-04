@@ -1,6 +1,6 @@
 name: volume_flash_plugin
 description: "A Flutter package that provides easy controls for adjusting volume and toggling the flashlight on both Android and iOS devices. Ideal for creating multimedia applications."
-repository: "https://github.com/shahzaibNiazi/audio_flash_manager"
+repository: "https://github.com/shahzaibNiazi/volume_flash_plugin/tree/master"
 version: 0.0.1
 
 
@@ -17,15 +17,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-
 
 flutter:
 
-  platforms:
-    android:
-      package: com.example.volume_flash_plugin
-      pluginClass: TorchPlugin
+  plugin:
+    platforms:
+      android:
+        package: com.example.volume_flash_plugin
+        pluginClass: VolumeFlashPlugin
+      ios:
+        pluginClass: VolumeFlashPlugin
 
 
   uses-material-design: true
