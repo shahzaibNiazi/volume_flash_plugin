@@ -53,6 +53,7 @@ class _VolumeFlashPluginState extends State<VolumeFlashPlugin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +69,7 @@ class _VolumeFlashPluginState extends State<VolumeFlashPlugin> {
                 text: widget.decreaseVolumeButtonText,
               ),
             if (widget.showFlashlightButton)
+             // IconButton(onPressed: (){}, icon: const Icon(Icons.flashlight_on_rounded)),
               _buildButton(
                 onPressed: _toggleFlashlight,
                 text: widget.flashlightButtonText,
@@ -79,25 +81,28 @@ class _VolumeFlashPluginState extends State<VolumeFlashPlugin> {
   }
 
   Widget _buildButton({required VoidCallback onPressed, required String text}) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        shape: widget.shape,
-        textStyle: widget.textStyle,
-        alignment: widget.alignment,
-        side: widget.side,
-        shadowColor: widget.shadowColor,
-        elevation: widget.elevation ?? 0.0,
-        padding: widget.padding ?? const EdgeInsets.all(2),
-        backgroundColor: widget.buttonBackgroundColor,
-        minimumSize: Size(
-          widget.buttonWidth ?? double.infinity,
-          widget.buttonHeight ?? 50.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          shape: widget.shape,
+          textStyle: widget.textStyle,
+          alignment: widget.alignment,
+          side: widget.side,
+          shadowColor: widget.shadowColor,
+          elevation: widget.elevation ?? 0.0,
+          padding: widget.padding ?? const EdgeInsets.all(2),
+          backgroundColor: widget.buttonBackgroundColor ,
+          minimumSize: Size(
+            widget.buttonWidth ?? double.infinity,
+            widget.buttonHeight ?? 50.0,
+          ),
         ),
-      ),
-      child: Text(
-        text,
-        style: widget.buttonTextStyle ?? const TextStyle(color: Colors.white),
+        child: Text(
+          text,
+          style: widget.buttonTextStyle ?? const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

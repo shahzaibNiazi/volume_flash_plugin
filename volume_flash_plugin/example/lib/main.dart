@@ -38,7 +38,7 @@ class ExampleScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       buttonWidth: 200,
-      buttonBackgroundColor: Colors.red,
+      buttonBackgroundColor: Colors.orange,
     );
   }
 }
