@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 class VolumeFlashPlugin {
   static const platform = MethodChannel('samples.flutter.dev/volume');
 
-static  Future<bool> toggleFlashlight(bool isFlashlightOn) async {
+  static Future<bool> toggleFlashlight(bool isFlashlightOn) async {
     try {
-      final bool result = await platform.invokeMethod('toggleFlashlight', {'isOn': !isFlashlightOn});
+      final bool result = await platform
+          .invokeMethod('toggleFlashlight', {'isOn': !isFlashlightOn});
       return result;
     } on PlatformException catch (e) {
       if (kDebugMode) {

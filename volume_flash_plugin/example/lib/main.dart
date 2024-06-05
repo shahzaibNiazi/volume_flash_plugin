@@ -28,44 +28,46 @@ class ExampleScreen extends StatefulWidget {
   @override
   State<ExampleScreen> createState() => _ExampleScreenState();
 }
+
 class _ExampleScreenState extends State<ExampleScreen> {
   bool _isFlashlightOn = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               _buildButton(
-                onPressed: ()async{
-                  await  VolumeFlashPlugin.increaseVolume();
+                onPressed: () async {
+                  await VolumeFlashPlugin.increaseVolume();
                 },
                 text: "Increase Volume",
               ),
               _buildButton(
-                onPressed: ()async{
-                  await  VolumeFlashPlugin.decreaseVolume();
+                onPressed: () async {
+                  await VolumeFlashPlugin.decreaseVolume();
                 },
                 text: "Decrease Volume",
               ),
               _buildButton(
-                onPressed: ()async{
-                  await  VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
-                  bool result = await VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
+                onPressed: () async {
+                  await VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
+                  bool result =
+                      await VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
                   setState(() {
                     _isFlashlightOn = result;
                   });
                 },
                 text: "Flash Light",
               ),
-          ],
-        ),
-      )
-    );
+            ],
+          ),
+        ));
   }
+
   Widget _buildButton({required VoidCallback onPressed, required String text}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -80,7 +82,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
           backgroundColor: Colors.red,
           minimumSize: const Size(200, 50.0),
         ),
-        child: Text(text, style:  const TextStyle(color: Colors.white)),
+        child: Text(text, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
