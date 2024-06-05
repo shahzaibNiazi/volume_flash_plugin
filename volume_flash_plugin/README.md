@@ -11,26 +11,70 @@ volume_flash_plugin, volume_flash_plugin.VolumeFlashPlugin, volume_flash_plugin.
     Example:
 
  ```dart
- class AudioFlashManager extends StatelessWidget {
-   const AudioFlashManager({super.key});
+class ExampleScreen extends StatefulWidget {
+  const ExampleScreen({super.key});
 
-   @override
-   Widget build(BuildContext context) {
-     return AudioTesting(
-       showIncreaseVolumeButton: true,
-       showDecreaseVolumeButton: true,
-       showFlashlightButton: true,
-       flashlightButtonText: "Flash Light",
-       decreaseVolumeButtonText: "Decrease Volume",
-       increaseVolumeButtonText: "Increase Volume",
-       shape: RoundedRectangleBorder(
-         borderRadius: BorderRadius.circular(12),
-       ),
-       buttonWidth: 200,
-       buttonBackgroundColor: Colors.red,
-     );
-   }
- }
+  @override
+  State<ExampleScreen> createState() => _ExampleScreenState();
+}
+class _ExampleScreenState extends State<ExampleScreen> {
+  bool _isFlashlightOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildButton(
+                onPressed: ()async{
+                  await  VolumeFlashPlugin.increaseVolume();
+                },
+                text: "Increase Volume",
+              ),
+              _buildButton(
+                onPressed: ()async{
+                  await  VolumeFlashPlugin.decreaseVolume();
+                },
+                text: "Decrease Volume",
+              ),
+              _buildButton(
+                onPressed: ()async{
+                  await  VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
+                  bool result = await VolumeFlashPlugin.toggleFlashlight(_isFlashlightOn);
+                  setState(() {
+                    _isFlashlightOn = result;
+                  });
+                },
+                text: "Flash Light",
+              ),
+            ],
+          ),
+        )
+    );
+  }
+  Widget _buildButton({required VoidCallback onPressed, required String text}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 0.0,
+          padding: const EdgeInsets.all(2),
+          backgroundColor: Colors.orange,
+          minimumSize: const Size(double.infinity, 50.0),
+        ),
+        child: Text(text, style:  const TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+}
+
  ```
 
     For more information, see the full documentation at:
